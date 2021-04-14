@@ -1,0 +1,23 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "hatchibombotar:grave",
+      "min_engine_version": "1.8.0",
+      "materials": {
+        "default": "spider"
+      },
+      "textures": {
+        "default": "textures/entity/grave"
+      },
+      "geometry": {
+        "default": "geometry.grave"
+      },
+      "render_controllers": [ "controller.render.spider" ],
+      "spawn_egg": {
+        "texture": "egg_grave",
+        "texture_index": 0
+      }      
+    }
+  }
+}

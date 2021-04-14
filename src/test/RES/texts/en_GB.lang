@@ -1,0 +1,15 @@
+##Hello Translators. This Guide Should help you in Translating My Packs.
+##action.hint.exit.player=Tap jump to exit the player
+##Do NOT Translate the first bit that says"action.hint.exit.player"
+##Translate the Bit That says"Tap jump to exit the player"
+
+#credits
+#addon by hatchibombotar
+#translated by PUTNAMEHERE
+
+#player sit addon
+action.hint.exit.player=Tap jump to exit the player
+
+#graves addon
+entity.graves:grave.name=Grave
+entity.inventory.unknown.name=Grave

@@ -1,0 +1,15 @@
+{
+    "format_version": "1.10.0",
+    "animations": {
+        "animation.start_death_counter_j5cfmnkccwt7ppim3lsyue": {
+            "timeline": {
+                "0.0": [
+                    "/scoreboard objectives add deaths_J5CfmnKCc dummy deaths",
+                    "/scoreboard objectives setdisplay list deaths_J5CfmnKCc decending"
+                ]
+            },
+            "animation_length": 1.0,
+            "loop": false
+        }
+    }
+}

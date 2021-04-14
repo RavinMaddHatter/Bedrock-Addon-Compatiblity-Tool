@@ -1,0 +1,65 @@
+{
+   "format_version":"1.13.0",
+   "minecraft:entity":{
+      "description":{
+         "identifier":"hatchibombotar:grave",
+         "is_spawnable":false,
+         "is_summonable":true,
+         "is_experimental": false,
+         "scripts": {
+           "animate": [
+             "collect"
+           ]
+         },
+         "animations": {
+           "collect": "animation.collect"
+         }
+       },
+   
+      "components":{
+         "minecraft:collision_box":{
+            "width":1,
+            "height":2
+         },
+         "minecraft:health":{
+            "value":20,
+            "max":20
+         },
+         "minecraft:equippable":{
+
+         },
+         "minecraft:is_chested":{
+
+         },
+         "minecraft:item_hopper":{
+
+         },
+         "minecraft:fire_immune":true,
+         "minecraft:hurt_on_condition":{
+            "damage_conditions":[
+               {
+                  "filters":{
+                     "test":"in_lava",
+                     "subject":"self",
+                     "operator":"==",
+                     "value":true
+                  },
+                  "cause":"lava",
+                  "damage_per_tick":0
+               }
+            ]
+         },
+         "minecraft:knockback_resistance":{
+            "value":1
+         },
+         "minecraft:physics":{
+
+         },
+         "minecraft:inventory":{
+            "container_type":"horse",
+            "inventory_size":54,
+            "can_be_syphoned_from":false
+         }
+      }
+   }
+}

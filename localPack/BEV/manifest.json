@@ -1,0 +1,39 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "§lGrave Stones",
+    "description": "Made by Hatchibombotar  |V1.0.4|BEV|",
+    "uuid": "f5741565-6be8-4ad5-879a-130c644ff694",
+    "version": [
+      1,
+      0,
+      4
+    ],
+    "min_engine_version": [
+      1,
+      13,
+      0
+    ]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "befec68a-a5a3-47a2-a7c4-d99187ebe19f",
+      "version": [
+        1,
+        0,
+        4
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "6181e449-d2b7-4482-8740-544e645bdd5f",
+      "version": [
+        1,
+        0,
+        4
+      ]
+    }
+  ]
+}

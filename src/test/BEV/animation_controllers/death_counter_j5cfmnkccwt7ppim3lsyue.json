@@ -1,0 +1,27 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.death_counter_j5cfmnkccwt7ppim3lsyue": {
+            "initial_state": "alive",
+            "states": {
+                "alive": {
+                    "transitions": [
+                        {
+                            "dead": "!query.is_alive"
+                        }
+                    ],
+                    "on_exit": [
+                        "/scoreboard players add @s deaths_J5CfmnKCc 1"
+                    ]
+                },
+                "dead": {
+                    "transitions": [
+                        {
+                            "alive": "query.is_alive"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

@@ -5,7 +5,7 @@
       "timeline": {
         "0.0": [
           "/scoreboard objectives add deaths_J5CfmnKCc dummy deaths",
-		  "/scoreboard objectives setdisplay list deaths_J5CfmnKCc decending"
+		  "/scoreboard objectives setdisplay list deaths_J5CfmnKCc descending"
 
         ]
       },

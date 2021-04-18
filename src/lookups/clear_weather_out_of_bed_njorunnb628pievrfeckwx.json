@@ -1,0 +1,27 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.one_player_sleep_uuid_njorunnb628pievrfeckwx": {
+			"initial_state": "awake",
+			"states": {
+				"awake": {
+					"transitions": [
+						{
+							"sleeping": "query.is_sleeping"
+						}
+					]
+				},
+				"sleeping": {
+					"transitions": [
+						{
+							"awake": "!query.is_sleeping"
+						}
+					],
+					"on_entry": [
+						"/weather clear 1200"
+					]
+				}
+			}
+		}
+	}
+}

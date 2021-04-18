@@ -27,7 +27,8 @@
 						}
 					],
 					"on_entry": [
-						"/time add 100"
+						"/time add 100",
+						"/weather clear 1"
 					]
 				},
 				"sleeping2": {

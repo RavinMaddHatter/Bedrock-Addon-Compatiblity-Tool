@@ -25,22 +25,21 @@ def addDeathCounter(path_to_bp):
                       "death_counter_j5cfmnkccwt7ppim3lsyue")
     add_a_c_to_player(path_to_bp,
                       "animation.start_death_counter_j5cfmnkccwt7ppim3lsyue",
-                      "start_death_counter_j5cfmnkccwt7ppim3lsyue",
-                      addtoscript=False)
+                      "start_death_counter_j5cfmnkccwt7ppim3lsyue")
 
 def addWeatherClear(path_to_bp):
     copy_ac(path_to_bp,"clear_weather_out_of_bed_njorunnb628pievrfeckwx.json")
     
     add_a_c_to_player(path_to_bp,
-                      "controller.animation.clear_weather_uuid_njorunnb628pievrfeckwx",
-                      "clear_weather_njorunnb628pievrfeckwx")
+                      "controller.animation.clear_weather_out_of_bed_njorunnb628pievrfeckwx",
+                      "clear_weather_id_out_of_bed_njorunnb628pievrfeckwx")
     
 def addOPS(path_to_bp):
     copy_ac(path_to_bp,"one_player_sleep_njorunnb628pievrfeckwx.json")
     
     add_a_c_to_player(path_to_bp,
-                      "controller.animation.one_player_sleep_uuid_njorunnb628pievrfeckwx",
-                      "ops_njorunnb628pievrfeckwx")
+                      "controller.animation.one_player_sleep_njorunnb628pievrfeckwx",
+                      "one_player_sleep_njorunnb628pievrfeckwx")
 def copy_ac(path_to_bp,ac_name):
     path_to_a_c=join(path_to_bp,"animation_controllers") 
     if not(os.path.isdir(path_to_a_c)):
@@ -59,10 +58,11 @@ def add_a_c_to_player(path_to_bp,a_c_handle,ac_common_handle,addtoscript=True):
     for file in result:
         print(file)
         with open(file, 'r+') as f:
+            data=""
             for line in f:
                 data+=line
             data=re.sub("\/\/[^\n]*\n", '', data )
-            data = json.load(data)
+            data = json.loads(data)
 
             if "minecraft:entity" in data.keys():
                 if data["minecraft:entity"]["description"]["identifier"]=="minecraft:player":
@@ -90,6 +90,7 @@ def edit_manifests(path_to_bp , packs):
     with open(join(path_to_bp,"manifest.json"), 'r+') as f:
         data = json.load(f)
         data["header"]["description"]+=", modified by a RavinMaddHatters pack merge tool to include: {}".format(packs)
+        
         f.seek(0)
         json.dump(data, f, indent=4)
         f.truncate() 
@@ -251,6 +252,7 @@ if __name__ == "__main__":
              
         
     root = Tk()
+    root.title("Addon Checker")
     core_pack=Label(root, text="Core Pack")
     add_ins=Label(root, text="Common Additions (will be added to the core pack):")
     death_counter_check = IntVar()
@@ -260,7 +262,7 @@ if __name__ == "__main__":
     death_check = Checkbutton(root, text="Death Counter", variable=death_counter_check, onvalue=1, offvalue=0)
     ops_check = Checkbutton(root, text="One Player Sleep", variable=ops_counter_check, onvalue=1, offvalue=0)
 
-    clear_check = Checkbutton(root, text="Sleep Clears Weather for 1 Day", variable=clear_counter_check, onvalue=1, offvalue=0)
+    clear_check = Checkbutton(root, text="One player sleep with clear weather", variable=clear_counter_check, onvalue=1, offvalue=0)
     browsButton = Button(root, text="Browse", command=browsepack)
     packButton = Button(root, text="Merge in Packs", command=make_pack_from_gui)
     Cross_check = Button(root, text="Cross Check a Pack", command=crossCheckPacksGui)

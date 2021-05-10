@@ -63,17 +63,17 @@ def add_a_c_to_player(path_to_bp,a_c_handle,ac_common_handle,addtoscript=True):
                 data+=line
             data=re.sub("\/\/[^\n]*\n", '', data )
             data = json.loads(data)
-
-            if "minecraft:entity" in data.keys():
-                if data["minecraft:entity"]["description"]["identifier"]=="minecraft:player":
-                    found=True
-                    if "scripts" not in data["minecraft:entity"]["description"].keys() and addtoscript:
-                        data["minecraft:entity"]["description"]["scripts"]={"animate":[]}
-                    if "animations" not in data["minecraft:entity"]["description"].keys():
-                        data["minecraft:entity"]["description"]["animations"]={}
-                    if addtoscript:
-                        data["minecraft:entity"]["description"]["scripts"]["animate"].append(ac_common_handle)
-                    data["minecraft:entity"]["description"]["animations"][ac_common_handle]=a_c_handle
+            if type(data) is dict:
+                if "minecraft:entity" in data.keys():
+                    if data["minecraft:entity"]["description"]["identifier"]=="minecraft:player":
+                        found=True
+                        if "scripts" not in data["minecraft:entity"]["description"].keys() and addtoscript:
+                            data["minecraft:entity"]["description"]["scripts"]={"animate":[]}
+                        if "animations" not in data["minecraft:entity"]["description"].keys():
+                            data["minecraft:entity"]["description"]["animations"]={}
+                        if addtoscript:
+                            data["minecraft:entity"]["description"]["scripts"]["animate"].append(ac_common_handle)
+                        data["minecraft:entity"]["description"]["animations"][ac_common_handle]=a_c_handle
             f.seek(0)
             json.dump(data, f, indent=4)
             f.truncate()
@@ -204,14 +204,22 @@ def check_compatiblity(Base,Cross):
     for file in result:
         print(file)
         data=loadJsonKillComments(file)
-        fields_found, keys=get_recursively(data,"identifier")
+        try:
+            fields_found, keys=get_recursively(data,"identifier")
+        except:
+            fields_found=[]
+            keys=[]
         base_handles+=fields_found
     result2 = [y for x in os.walk(path_to_cross) for y in glob(os.path.join(x[0], '*.json'))] 
     cross_handles=[]
     for file in result2:
         print(file)
         data=loadJsonKillComments(file)
-        fields_found, keys=get_recursively(data,"identifier")
+        try:
+            fields_found, keys=get_recursively(data,"identifier")
+        except:
+            fields_found=[]
+            keys=[]
         cross_handles+=fields_found
     print(base_handles)
     print(cross_handles)
@@ -227,7 +235,7 @@ if __name__ == "__main__":
     def browsepack():
         #browse for a structure file.
         packPath.set(filedialog.askopenfilename(filetypes=(
-            ("addon", "*.mcaddon *.MCADDON"),("zip", "*.zip *.ZIP") )))
+            ("addon", "*.mcaddon *.MCADDON *.MCPACK *mcpack"),("zip", "*.zip *.ZIP") )))
     def make_pack_from_gui():
         mergePacks(packPath.get(),
                    death=death_counter_check.get(),
@@ -238,7 +246,7 @@ if __name__ == "__main__":
         base_pack=packPath.get()
         if len(base_pack)>0:
             cross_pack=(filedialog.askopenfilename(filetypes=(
-                ("Addon to Cross Check", "*.mcaddon *.MCADDON"),("zip", "*.zip *.ZIP") )))
+                ("Addon to Cross Check", "*.mcaddon *.MCADDON *.MCPACK *.MCPACK" ),("zip", "*.zip *.ZIP") )))
             intersections=check_compatiblity(base_pack,cross_pack)
             print(intersections)
             if len(intersections)!=0:
